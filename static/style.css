@@ -1,0 +1,201 @@
+/* Общие стили */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #34495e;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+/* Основной контент */
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Flash-сообщения */
+.flash-messages {
+    margin-bottom: 20px;
+}
+
+.flash-message {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.flash-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flash-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Стили для кнопок и контейнера */
+.indices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.index-button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.index-button:hover {
+    background-color: #0056b3;
+}
+
+.delete-button {
+    padding: 5px 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
+}
+
+.no-indices {
+    color: #666;
+    font-style: italic;
+}
+
+/* Стили для таблицы */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+table th {
+    background-color: #2980b9;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+table tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Стили для пагинации */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.pagination a,
+.pagination .current {
+    padding: 8px 12px;
+    border: 1px solid #2980b9;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #2980b9;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+    background-color: #2980b9;
+    color: white;
+}
+
+.pagination .current {
+    background-color: #2980b9;
+    color: white;
+    border-color: #2980b9;
+    font-weight: bold;
+}
+
+.pagination .disabled {
+    color: #bdc3c7;
+    border-color: #bdc3c7;
+    pointer-events: none;
+}
+
+/* Стили для кнопки "Вернуться назад" */
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #34495e;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.back-link:hover {
+    background-color: #2c3e50;
+}
+
+/* Адаптивный дизайн */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    table th,
+    table td {
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+
+    .pagination a,
+    .pagination .current {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+
+    .back-link {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}

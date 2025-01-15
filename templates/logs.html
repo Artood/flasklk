@@ -1,0 +1,253 @@
+{% extends "base.html" %}
+
+{% block title %}{{ display_name }}{% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center;">{{ display_name }}</h1>
+    {% if logs %}
+        <table border="1">
+            <tr>
+                <!-- Основные поля -->
+                <th>Timestamp</th>
+                <th>Host</th>
+                <th>T-Pot IP Int</th>
+                <th>OS</th>
+                <th>Subject</th>
+                <th>Mod</th>
+                <th>Tags</th>
+                <th>Path</th>
+                <th>Params</th>
+                <th>T-Pot Customer</th>
+                <th>Dist</th>
+                <th>Version</th>
+                <th>Dest Port</th>
+                <th>T-Pot Hostname</th>
+                <th>T-Pot IP Ext</th>
+                <th>Dest IP</th>
+                <th>Src IP</th>
+                <th>Src Port</th>
+                <th>Raw Sig</th>
+                <th>Type</th>
+                <th>Raw MTU</th>
+                <th>Reason</th>
+                <th>Raw Hits</th>
+                <th>Raw Freq</th>
+                <th>Uptime</th>
+                <th>Protocol</th>
+                <th>Timestamp Field</th>
+                <th>DNS Name</th>
+                <th>DNS Type</th>
+                <th>DNS Class</th>
+                <th>Opcode</th>
+                <th>Link</th>
+                <th>Request Method</th>
+                <th>Content Type</th>
+                <th>HTTP User Agent</th>
+                <th>HTTP Host</th>
+                <th>HTTP Version</th>
+                <th>HTTP Accept</th>
+                <th>Accept Encoding</th>
+                <th>Content Length</th>
+                <th>Connection</th>
+                <th>JA3 Algorithms</th>
+                <th>JA3 Version</th>
+                <th>JA3 EC Format</th>
+                <th>JA3</th>
+                <th>JA3 Extensions</th>
+                <th>Server Name</th>
+                <th>JA3 Ciphers</th>
+                <th>JA3 EC</th>
+                <th>JA3S Ciphers</th>
+                <th>JA3S Version</th>
+                <th>JA3S</th>
+                <th>JA3S Extensions</th>
+                <th>JA3S Algorithms</th>
+
+                <!-- Поля из headers -->
+                <th>Headers Request Path</th>
+                <th>Headers Request Method</th>
+                <th>Headers Content Type</th>
+                <th>Headers HTTP User Agent</th>
+                <th>Headers HTTP Host</th>
+                <th>Headers HTTP Version</th>
+                <th>Headers HTTP Accept</th>
+                <th>Headers Accept Encoding</th>
+                <th>Headers Content Length</th>
+                <th>Headers Connection</th>
+
+                <!-- Поля из geoip_ext -->
+                <th>GeoIP Ext Location Lon</th>
+                <th>GeoIP Ext Location Lat</th>
+                <th>GeoIP Ext Continent Code</th>
+                <th>GeoIP Ext Country Code3</th>
+                <th>GeoIP Ext IP</th>
+                <th>GeoIP Ext AS Org</th>
+                <th>GeoIP Ext Country Code2</th>
+                <th>GeoIP Ext Timezone</th>
+                <th>GeoIP Ext Latitude</th>
+                <th>GeoIP Ext ASN</th>
+                <th>GeoIP Ext Country Name</th>
+                <th>GeoIP Ext Longitude</th>
+
+                <!-- Поля из geoip -->
+                <th>GeoIP AS Org</th>
+                <th>GeoIP ASN</th>
+                <th>GeoIP Continent Code</th>
+                <th>GeoIP Country Name</th>
+                <th>GeoIP IP</th>
+                <th>GeoIP Latitude</th>
+                <th>GeoIP Longitude</th>
+
+                <!-- Поля из fatt_tls -->
+                <th>Fatt TLS JA3 Algorithms</th>
+                <th>Fatt TLS JA3 Version</th>
+                <th>Fatt TLS JA3 EC Format</th>
+                <th>Fatt TLS JA3</th>
+                <th>Fatt TLS JA3 Extensions</th>
+                <th>Fatt TLS Server Name</th>
+                <th>Fatt TLS JA3 Ciphers</th>
+                <th>Fatt TLS JA3 EC</th>
+                <th>Fatt TLS JA3S Ciphers</th>
+                <th>Fatt TLS JA3S Version</th>
+                <th>Fatt TLS JA3S</th>
+                <th>Fatt TLS JA3S Extensions</th>
+                <th>Fatt TLS JA3S Algorithms</th>
+            </tr>
+            {% for log in logs %}
+                <tr>
+                    <!-- Основные поля -->
+                    <td class="timestamp">{{ log.timestamp | default('') }}</td>
+                    <td>{{ log.host | default('') }}</td>
+                    <td>{{ log.t_pot_ip_int | default('') }}</td>
+                    <td>{{ log.os | default('') }}</td>
+                    <td>{{ log.subject | default('') }}</td>
+                    <td>{{ log.mod | default('') }}</td>
+                    <td>{{ log.tags | default('') }}</td>
+                    <td>{{ log.path | default('') }}</td>
+                    <td>{{ log.params | default('') }}</td>
+                    <td>{{ log.t_pot_customer | default('') }}</td>
+                    <td>{{ log.dist | default('') }}</td>
+                    <td>{{ log.version | default('') }}</td>
+                    <td>{{ log.dest_port | default('') }}</td>
+                    <td>{{ log.t_pot_hostname | default('') }}</td>
+                    <td>{{ log.t_pot_ip_ext | default('') }}</td>
+                    <td>{{ log.dest_ip | default('') }}</td>
+                    <td>{{ log.src_ip | default('') }}</td>
+                    <td>{{ log.src_port | default('') }}</td>
+                    <td>{{ log.raw_sig | default('') }}</td>
+                    <td>{{ log.type | default('') }}</td>
+                    <td>{{ log.raw_mtu | default('') }}</td>
+                    <td>{{ log.reason | default('') }}</td>
+                    <td>{{ log.raw_hits | default('') }}</td>
+                    <td>{{ log.raw_freq | default('') }}</td>
+                    <td>{{ log.uptime | default('') }}</td>
+                    <td>{{ log.protocol | default('') }}</td>
+                    <td>{{ log.timestamp_field | default('') }}</td>
+                    <td>{{ log.dns_name | default('') }}</td>
+                    <td>{{ log.dns_type | default('') }}</td>
+                    <td>{{ log.dns_cls | default('') }}</td>
+                    <td>{{ log.opcode | default('') }}</td>
+                    <td>{{ log.link | default('') }}</td>
+                    <td>{{ log.request_method | default('') }}</td>
+                    <td>{{ log.content_type | default('') }}</td>
+                    <td>{{ log.http_user_agent | default('') }}</td>
+                    <td>{{ log.http_host | default('') }}</td>
+                    <td>{{ log.http_version | default('') }}</td>
+                    <td>{{ log.http_accept | default('') }}</td>
+                    <td>{{ log.accept_encoding | default('') }}</td>
+                    <td>{{ log.content_length | default('') }}</td>
+                    <td>{{ log.connection | default('') }}</td>
+                    <td>{{ log.ja3Algorithms | default('') }}</td>
+                    <td>{{ log.ja3Version | default('') }}</td>
+                    <td>{{ log.ja3EcFmt | default('') }}</td>
+                    <td>{{ log.ja3 | default('') }}</td>
+                    <td>{{ log.ja3Extensions | default('') }}</td>
+                    <td>{{ log.serverName | default('') }}</td>
+                    <td>{{ log.ja3Ciphers | default('') }}</td>
+                    <td>{{ log.ja3Ec | default('') }}</td>
+                    <td>{{ log.ja3sCiphers | default('') }}</td>
+                    <td>{{ log.ja3sVersion | default('') }}</td>
+                    <td>{{ log.ja3s | default('') }}</td>
+                    <td>{{ log.ja3sExtensions | default('') }}</td>
+                    <td>{{ log.ja3sAlgorithms | default('') }}</td>
+
+                    <!-- Поля из headers -->
+                    <td>{{ log.headers_request_path | default('') }}</td>
+                    <td>{{ log.headers_request_method | default('') }}</td>
+                    <td>{{ log.headers_content_type | default('') }}</td>
+                    <td>{{ log.headers_http_user_agent | default('') }}</td>
+                    <td>{{ log.headers_http_host | default('') }}</td>
+                    <td>{{ log.headers_http_version | default('') }}</td>
+                    <td>{{ log.headers_http_accept | default('') }}</td>
+                    <td>{{ log.headers_accept_encoding | default('') }}</td>
+                    <td>{{ log.headers_content_length | default('') }}</td>
+                    <td>{{ log.headers_connection | default('') }}</td>
+
+                    <!-- Поля из geoip_ext -->
+                    <td>{{ log.geoip_ext_location_lon | default('') }}</td>
+                    <td>{{ log.geoip_ext_location_lat | default('') }}</td>
+                    <td>{{ log.geoip_ext_continent_code | default('') }}</td>
+                    <td>{{ log.geoip_ext_country_code3 | default('') }}</td>
+                    <td>{{ log.geoip_ext_ip | default('') }}</td>
+                    <td>{{ log.geoip_ext_as_org | default('') }}</td>
+                    <td>{{ log.geoip_ext_country_code2 | default('') }}</td>
+                    <td>{{ log.geoip_ext_timezone | default('') }}</td>
+                    <td>{{ log.geoip_ext_latitude | default('') }}</td>
+                    <td>{{ log.geoip_ext_asn | default('') }}</td>
+                    <td>{{ log.geoip_ext_country_name | default('') }}</td>
+                    <td>{{ log.geoip_ext_longitude | default('') }}</td>
+
+                    <!-- Поля из geoip -->
+                    <td>{{ log.geoip_as_org | default('') }}</td>
+                    <td>{{ log.geoip_asn | default('') }}</td>
+                    <td>{{ log.geoip_continent_code | default('') }}</td>
+                    <td>{{ log.geoip_country_name | default('') }}</td>
+                    <td>{{ log.geoip_ip | default('') }}</td>
+                    <td>{{ log.geoip_latitude | default('') }}</td>
+                    <td>{{ log.geoip_longitude | default('') }}</td>
+
+                    <!-- Поля из fatt_tls -->
+                    <td>{{ log.fatt_tls_ja3Algorithms | default('') }}</td>
+                    <td>{{ log.fatt_tls_ja3Version | default('') }}</td>
+                    <td>{{ log.fatt_tls_ja3EcFmt | default('') }}</td>
+                    <td>{{ log.fatt_tls_ja3 | default('') }}</td>
+                    <td>{{ log.fatt_tls_ja3Extensions | default('') }}</td>
+                    <td>{{ log.fatt_tls_serverName | default('') }}</td>
+                    <td>{{ log.fatt_tls_ja3Ciphers | default('') }}</td>
+                    <td>{{ log.fatt_tls_ja3Ec | default('') }}</td>
+                    <td>{{ log.fatt_tls_ja3sCiphers | default('') }}</td>
+                    <td>{{ log.fatt_tls_ja3sVersion | default('') }}</td>
+                    <td>{{ log.fatt_tls_ja3s | default('') }}</td>
+                    <td>{{ log.fatt_tls_ja3sExtensions | default('') }}</td>
+                    <td>{{ log.fatt_tls_ja3sAlgorithms | default('') }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <!-- Пагинация -->
+        <div class="pagination">
+            {% if page > 1 %}
+                <a href="{{ url_for('logs', index=index, page=page-1, per_page=per_page) }}">Назад</a>
+            {% else %}
+                <span class="disabled">Назад</span>
+            {% endif %}
+
+            {% for p in range(1, total_pages + 1) %}
+                {% if p == page %}
+                    <span class="current">{{ p }}</span>
+                {% else %}
+                    <a href="{{ url_for('logs', index=index, page=p, per_page=per_page) }}">{{ p }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page < total_pages %}
+                <a href="{{ url_for('logs', index=index, page=page+1, per_page=per_page) }}">Вперед</a>
+            {% else %}
+                <span class="disabled">Вперед</span>
+            {% endif %}
+        </div>
+    {% else %}
+        <p>Логи отсутствуют для данного индекса.</p>
+    {% endif %}
+    <a href="{{ url_for('index') }}" class="back-link">Вернуться назад</a>
+{% endblock %}
