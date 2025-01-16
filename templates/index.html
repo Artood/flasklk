@@ -12,7 +12,7 @@
                         <form action="{{ url_for('logs', index=index.name) }}" method="get" style="display: inline;">
                             <button type="submit" class="index-button">{{ index.display_name }}</button>
                         </form>
-                        <form action="{{ url_for('delete_index', index=index.name) }}" method="post" style="display: inline;" onsubmit="return confirmDelete('{{ index }}')">
+                        <form action="{{ url_for('delete_index', index=index.name) }}" method="post" style="display: inline;" onsubmit="return confirmDelete('{{ index.display_name }}')">
                             <button type="submit" class="delete-button">Удалить</button>
                         </form>
                     </div>
@@ -27,8 +27,8 @@
 {% block scripts %}
     <script>
         // Функция для подтверждения удаления
-        function confirmDelete(index) {
-            return confirm(`Вы уверены, что хотите удалить индекс ${index.display_name}?`);
+        function confirmDelete(indexName) {
+            return confirm(`Вы уверены, что хотите удалить индекс "${indexName}"?`);
         }
     </script>
 {% endblock %}

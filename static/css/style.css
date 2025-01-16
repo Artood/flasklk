@@ -23,6 +23,17 @@ header h1 {
     font-size: 1.8rem;
 }
 
+header h1 a {
+    color: inherit; /* Наследует цвет текста от родителя */
+    text-decoration: none; /* Убирает подчеркивание */
+    transition: color 0.3s ease; /* Плавное изменение цвета */
+    cursor: pointer; /* Курсор в виде указателя */
+}
+
+header h1 a:hover {
+    color: #ffcc00; /* Цвет при наведении */
+}
+
 /* Основной контент */
 main {
     flex: 1;

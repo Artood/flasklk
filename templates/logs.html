@@ -3,7 +3,7 @@
 {% block title %}{{ display_name }}{% endblock %}
 
 {% block content %}
-    <h1 style="text-align: center;">{{ display_name }}</h1>
+    <h2 style="text-align: center;">{{ display_name }}</h2>
     {% if logs %}
         <table border="1">
             <thead>
@@ -19,7 +19,7 @@
             <tbody>
                 {% for log in logs %}
                     <tr onclick="openModal('{{ loop.index }}')" class="clickable-row">
-                        <td>{{ log.timestamp | default('') }}</td>
+                        <td class="timestamp">{{ log.timestamp | default('') }}</td>
                         <td>{{ log.dest_port | default('') }}</td>
                         <td>{{ log.src_ip | default('') }}</td>
                         <td>{{ log.geoip_country_name | default('Нет данных') }}</td>
@@ -68,6 +68,21 @@
 
 {% block scripts %}
     <script>
+        // Функция для форматирования времени
+        function formatTimestamp(timestamp) {
+            if (!timestamp) return '';
+            const date = new Date(timestamp);
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const seconds = String(date.getSeconds()).padStart(2, '0');
+            return `${hours}:${minutes}:${seconds}`;
+        }
+
+        // Применяем форматирование времени ко всем ячейкам с классом "timestamp"
+        document.querySelectorAll('.timestamp').forEach(cell => {
+            cell.textContent = formatTimestamp(cell.textContent);
+        });
+
         // Функция для открытия модального окна
         function openModal(logIndex) {
             const log = {{ logs | tojson | safe }};
@@ -76,7 +91,7 @@
             const modalBody = document.getElementById('modal-body');
             modalBody.innerHTML = `
                 <h2>Детали лога</h2>
-                <p><strong>Время:</strong> ${selectedLog.timestamp || ''}</p>
+                <p><strong>Время:</strong> ${formatTimestamp(selectedLog.timestamp) || ''}</p>
                 <p><strong>Порт назначения:</strong> ${selectedLog.dest_port || ''}</p>
                 <p><strong>Исходный IP:</strong> ${selectedLog.src_ip || ''}</p>
                 <p><strong>Страна:</strong> ${selectedLog.geoip_ext_country_name || 'Нет данных'}</p>

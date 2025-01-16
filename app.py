@@ -64,7 +64,7 @@ def logs(index):
     try:
         display_name = format_index_name(index)
         page = request.args.get('page', 1, type=int)
-        per_page = request.args.get('per_page', 20, type=int)
+        per_page = request.args.get('per_page', 10, type=int)
         offset = (page - 1) * per_page
 
         response = es.search(
