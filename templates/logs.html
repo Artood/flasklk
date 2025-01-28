@@ -4,6 +4,10 @@
 
 {% block content %}
     <h2 style="text-align: center;">{{ display_name }}</h2>
+    <div class="actions">
+        <a href="{{ url_for('stats', index=index) }}" class="stats-button">Статистика</a>
+        <a href="{{ url_for('export_csv', index=index) }}" class="export-button">Экспорт в CSV</a>
+    </div>
     {% if logs %}
         <table border="1">
             <thead>
@@ -94,8 +98,8 @@
                 <p><strong>Время:</strong> ${formatTimestamp(selectedLog.timestamp) || ''}</p>
                 <p><strong>Порт назначения:</strong> ${selectedLog.dest_port || ''}</p>
                 <p><strong>Исходный IP:</strong> ${selectedLog.src_ip || ''}</p>
-                <p><strong>Страна:</strong> ${selectedLog.geoip_ext_country_name || 'Нет данных'}</p>
-                <p><strong>ASN Организация:</strong> ${selectedLog.geoip_ext_as_org || 'Нет данных'}</p>
+                <p><strong>Страна:</strong> ${selectedLog.geoip_country_name || 'Нет данных'}</p>
+                <p><strong>ASN Организации:</strong> ${selectedLog.geoip_as_org || 'Нет данных'}</p>
                 <p><strong>Тип:</strong> ${selectedLog.type || ''}</p>
                 <h3>Дополнительные данные</h3>
                 ${renderAdditionalFields(selectedLog)}

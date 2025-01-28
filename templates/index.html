@@ -12,9 +12,7 @@
                         <form action="{{ url_for('logs', index=index.name) }}" method="get" style="display: inline;">
                             <button type="submit" class="index-button">{{ index.display_name }}</button>
                         </form>
-                        <form action="{{ url_for('delete_index', index=index.name) }}" method="post" style="display: inline;" onsubmit="return confirmDelete('{{ index.display_name }}')">
-                            <button type="submit" class="delete-button">Удалить</button>
-                        </form>
+                        <button type="button" class="delete-button" onclick="openDeleteModal('{{ index.name }}', '{{ index.display_name }}')">Удалить</button>
                     </div>
                 {% endfor %}
             </div>
@@ -22,13 +20,51 @@
             <p class="no-indices">Нет доступных индексов.</p>
         {% endif %}
     </section>
+
+    <!-- Модальное окно для подтверждения удаления -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDeleteModal()">&times;</span>
+            <h2>Подтверждение удаления</h2>
+            <p id="deleteModalText"></p>
+            <div class="modal-actions">
+                <button type="button" class="modal-button confirm-delete" onclick="confirmDelete()">Удалить</button>
+                <button type="button" class="modal-button cancel-delete" onclick="closeDeleteModal()">Отмена</button>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block scripts %}
     <script>
-        // Функция для подтверждения удаления
-        function confirmDelete(indexName) {
-            return confirm(`Вы уверены, что хотите удалить индекс "${indexName}"?`);
+        let currentIndexToDelete = null;
+
+        // Функция для открытия модального окна удаления
+        function openDeleteModal(indexName, displayName) {
+            currentIndexToDelete = indexName;
+            document.getElementById('deleteModalText').textContent = `Вы уверены, что хотите удалить индекс "${displayName}"?`;
+            document.getElementById('deleteModal').style.display = 'block';
         }
+
+        // Функция для закрытия модального окна удаления
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').style.display = 'none';
+            currentIndexToDelete = null;
+        }
+
+        // Функция для подтверждения удаления
+        function confirmDelete() {
+            if (currentIndexToDelete) {
+                window.location.href = `{{ url_for('delete_index', index='') }}${currentIndexToDelete}`;
+            }
+        }
+
+        // Закрытие модального окна при клике вне его
+        window.onclick = function(event) {
+            const modal = document.getElementById('deleteModal');
+            if (event.target === modal) {
+                closeDeleteModal();
+            }
+        };
     </script>
 {% endblock %}

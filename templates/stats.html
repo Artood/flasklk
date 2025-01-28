@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Статистика - {{ index }}{% endblock %}
+
+{% block content %}
+    <h2>Статистика для индекса: {{ index }}</h2>
+
+    <div class="stats-grid">
+        <section class="stats-card">
+            <h3>Топ-10 стран</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Страна</th>
+                        <th>Количество</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for country in stats.top_countries %}
+                        <tr>
+                            <td>{{ country.key }}</td>
+                            <td>{{ country.doc_count }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="stats-card">
+            <h3>Топ-10 Source IP</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>IP</th>
+                        <th>Количество</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ip in stats.top_src_ips %}
+                        <tr>
+                            <td>{{ ip.key }}</td>
+                            <td>{{ ip.doc_count }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="stats-card">
+            <h3>Топ-10 типов</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Тип</th>
+                        <th>Количество</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for type in stats.top_types %}
+                        <tr>
+                            <td>{{ type.key }}</td>
+                            <td>{{ type.doc_count }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+
+        <section class="stats-card">
+            <h3>Топ-10 Destination Ports</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Порт</th>
+                        <th>Количество</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for port in stats.top_dest_ports %}
+                        <tr>
+                            <td>{{ port.key }}</td>
+                            <td>{{ port.doc_count }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <a href="{{ url_for('logs', index=index) }}" class="back-link">Вернуться к логам</a>
+{% endblock %}
